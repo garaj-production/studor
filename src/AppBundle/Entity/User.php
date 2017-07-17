@@ -17,4 +17,16 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @inheritdoc
+     */
+    public function setEmail($email)
+    {
+        $email = $email ?? '';
+        parent::setEmail($email);
+        $this->setUsername($email);
+
+        return $this;
+    }
 }
