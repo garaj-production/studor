@@ -1,0 +1,86 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block title 'Регистрация' %}
+
+{% block fos_user_content %}
+    <div class="grid-x">
+        <div class="small-2 cell"></div>
+        <div class="small-8 cell">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form container' ~ (not form.vars.valid ? ' form--invalid')}}) }}
+                <div class="form-icons">
+                    <h4>Регистрация нового аккаунта</h4>
+
+                    <div class="input-group">
+                    <span class="input-group-label">
+                        <i class="fa fa-envelope"></i>
+                    </span>
+                        {{ form_widget(form.email, {
+                            'label': 'E-mail',
+                            'attr': {
+                                'placeholder': 'Введите e-mail',
+                                'class': 'input-group-field',
+                            }
+                        }) }}
+                    </div>
+
+                    <div class="input-group">
+                    <span class="input-group-label">
+                        <i class="fa fa-key"></i>
+                    </span>
+                        {{ form_widget(form.plainPassword.first, {
+                            'label': '',
+                            'attr': {
+                                'placeholder': 'Введите пароль',
+                                'class': 'input-group-field',
+                            }
+                        }) }}
+                    </div>
+
+                    <div class="input-group">
+                    <span class="input-group-label">
+                        <i class="fa fa-key"></i>
+                    </span>
+                        {{ form_widget(form.plainPassword.second, {
+                            'label': '',
+                            'attr': {
+                                'placeholder': 'Повторите пароль',
+                                'class': 'input-group-field',
+                            }
+                        }) }}
+                    </div>
+
+
+                    <button type="submit" class="button">Зарегистрироваться</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="small-2 cell"></div>
+    </div>
+{% endblock fos_user_content %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        form .form-icons {
+            text-align: center;
+        }
+
+        form .form-icons h4 {
+            margin-bottom: 1rem;
+        }
+
+        form .form-icons .input-group-label {
+            background-color: #1779ba;
+            border-color: #1779ba;
+        }
+
+        form .form-icons .input-group-field {
+            border-color: #1779ba;
+        }
+
+        form .form-icons .fa {
+            color: white;
+            width: 1rem;
+        }
+    </style>
+{% endblock %}
