@@ -1,5 +1,25 @@
 {% extends 'FOSUserBundle::layout.html.twig' %}
 
+{% use 'form_div_layout.html.twig' %}
+{% form_theme form _self %}
+
+{%- block form_row -%}
+    <div class="input-group">
+        <span class="input-group-label">
+            <i class="fa fa-{{ attr.icon|default('') }}"></i>
+        </span>
+        {{- form_widget(form) -}}
+    </div>
+    {{- form_errors(form) -}}
+{%- endblock form_row -%}
+
+{% block form_widget_simple -%}
+    {% if type is not defined or type not in ['file', 'hidden'] %}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' input-group-field')|trim}) -%}
+    {% endif %}
+    {{- parent() -}}
+{%- endblock form_widget_simple %}
+
 {% block title 'Регистрация' %}
 
 {% block fos_user_content %}
@@ -10,46 +30,26 @@
                 <div class="form-icons">
                     <h4>Регистрация нового аккаунта</h4>
 
-                    <div class="input-group">
-                    <span class="input-group-label">
-                        <i class="fa fa-envelope"></i>
-                    </span>
-                        {{ form_widget(form.email, {
-                            'label': 'E-mail',
-                            'attr': {
-                                'placeholder': 'Введите e-mail',
-                                'class': 'input-group-field',
-                            }
-                        }) }}
-                    </div>
+                    {{ form_row(form.email, {
+                        'attr': {
+                            'placeholder': 'Введите e-mail',
+                            'icon': 'envelope',
+                        }
+                    }) }}
 
-                    <div class="input-group">
-                    <span class="input-group-label">
-                        <i class="fa fa-key"></i>
-                    </span>
-                        {{ form_widget(form.plainPassword.first, {
-                            'label': '',
-                            'attr': {
-                                'placeholder': 'Введите пароль',
-                                'class': 'input-group-field',
-                            }
-                        }) }}
-                    </div>
+                    {{ form_row(form.plainPassword.first, {
+                        'attr': {
+                            'placeholder': 'Введите пароль',
+                            'icon': 'key',
+                        }
+                    }) }}
 
-                    <div class="input-group">
-                    <span class="input-group-label">
-                        <i class="fa fa-key"></i>
-                    </span>
-                        {{ form_widget(form.plainPassword.second, {
-                            'label': '',
-                            'attr': {
-                                'placeholder': 'Повторите пароль',
-                                'class': 'input-group-field',
-                            }
-                        }) }}
-                    </div>
-
-
+                    {{ form_row(form.plainPassword.second, {
+                        'attr': {
+                            'placeholder': 'Повторите second',
+                            'icon': 'key',
+                        }
+                    }) }}
                     <button type="submit" class="button">Зарегистрироваться</button>
                 </div>
             {{ form_end(form) }}
