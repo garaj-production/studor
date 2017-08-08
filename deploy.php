@@ -19,6 +19,7 @@ host('green.elastictech.org')
     ->user('u3087')
     ->stage('demo')
     ->set('env', 'prod')
+    ->set('http_user', 'u3087')
     ->set('deploy_path', '/home/u3087/domains/u3087.green.elastictech.org');
 
 // Tasks
