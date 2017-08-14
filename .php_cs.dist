@@ -1,0 +1,25 @@
+<?php
+
+$finder = PhpCsFixer\Finder::create()
+    ->exclude(['var', 'bin'])
+    ->in(__DIR__)
+;
+
+$config = PhpCsFixer\Config::create()
+    ->setRules([
+        'array_syntax' => ['syntax' => 'short'],
+        'braces' => ['allow_single_line_closure' => true],
+        'concat_space' => ['spacing' => 'one'],
+        'no_unused_imports' => true,
+        'no_whitespace_before_comma_in_array' => true,
+        'no_trailing_comma_in_singleline_array' => true,
+        'trailing_comma_in_multiline_array' => true,
+        'trim_array_spaces' => true,
+        'whitespace_after_comma_in_array' => true,
+        'unary_operator_spaces' => true,
+        'cast_spaces' => true,
+    ])
+    ->setFinder($finder)
+;
+
+return $config;
