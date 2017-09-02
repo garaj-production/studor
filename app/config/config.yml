@@ -83,3 +83,12 @@ fos_user:
 
 vich_uploader:
     db_driver: orm
+
+    mappings:
+        avatar:
+            uri_prefix: /images/avatars
+            upload_destination: '%kernel.root_dir%/../web/images/avatars'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: true
+            delete_on_update: true
+            delete_on_remove: true
