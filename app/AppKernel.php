@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new \Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
             new \FOS\UserBundle\FOSUserBundle(),
+            new \Vich\UploaderBundle\VichUploaderBundle(),
 
             new AppBundle\AppBundle(),
         ];
