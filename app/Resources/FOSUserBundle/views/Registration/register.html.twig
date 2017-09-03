@@ -30,6 +30,13 @@
                 <div class="form-icons">
                     <h4>Регистрация нового аккаунта</h4>
 
+                    {{ form_row(form.name, {
+                        'attr': {
+                            'placeholder': 'Введите Ваше имя',
+                            'icon': 'user',
+                        }
+                    }) }}
+
                     {{ form_row(form.email, {
                         'attr': {
                             'placeholder': 'Введите e-mail',

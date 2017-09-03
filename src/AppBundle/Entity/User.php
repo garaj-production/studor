@@ -45,6 +45,13 @@ class User extends BaseUser
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $name;
+
+    /**
      * @inheritdoc
      */
     public function setEmail($email)
@@ -84,5 +91,18 @@ class User extends BaseUser
     public function getAvatarName()
     {
         return $this->avatarName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name)
+    {
+        $this->name = $name;
     }
 }

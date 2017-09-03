@@ -14,6 +14,7 @@ class UserRegistrationType extends AbstractType
         parent::buildForm($builder, $options);
 
         $builder->remove('username');
+        $builder->add('name');
     }
 
     public function getParent()

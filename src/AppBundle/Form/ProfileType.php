@@ -16,6 +16,8 @@ class ProfileType extends AbstractType
 
         $builder->remove('username');
 
+        $builder->add('name');
+
         $builder->add('avatar', VichImageType::class, [
             'required' => false,
             'allow_delete' => false,
