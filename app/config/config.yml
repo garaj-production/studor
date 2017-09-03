@@ -7,6 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    app.path.avatar_images: /uploads/images/avatars
 
 framework:
     #esi: ~
@@ -80,14 +81,17 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\UserRegistrationType
+    profile:
+        form:
+            type: AppBundle\Form\ProfileType
 
 vich_uploader:
     db_driver: orm
 
     mappings:
         avatar:
-            uri_prefix: /images/avatars
-            upload_destination: '%kernel.root_dir%/../web/images/avatars'
+            uri_prefix: '%app.path.avatar_images%'
+            upload_destination: '%kernel.root_dir%/../web/upload/images/avatars'
             namer: vich_uploader.namer_uniqid
             inject_on_load: true
             delete_on_update: true

@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -30,11 +31,18 @@ class User extends BaseUser
     private $avatar;
 
     /**
-     * @ORM\Column(name="avatar", type="string", length=255)
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
      *
      * @var string
      */
     private $avatarName;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @inheritdoc
@@ -51,6 +59,10 @@ class User extends BaseUser
     public function setAvatar(File $avatar = null)
     {
         $this->avatar = $avatar;
+
+        if ($this->avatar instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
     /**
@@ -61,7 +73,7 @@ class User extends BaseUser
         return $this->avatar;
     }
 
-    public function setAvatarName(string $avatarName)
+    public function setAvatarName(string $avatarName = null)
     {
         $this->avatarName = $avatarName;
     }
