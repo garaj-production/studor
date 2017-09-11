@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\EventListener;
+namespace AppBundle\EventSubscriber;
 
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
@@ -8,8 +8,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class RegistrationListener implements EventSubscriberInterface
+class RegistrationSubscriber implements EventSubscriberInterface
 {
+    /** @var UrlGeneratorInterface */
     private $router;
 
     public function __construct(UrlGeneratorInterface $router)

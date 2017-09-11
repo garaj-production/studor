@@ -15,14 +15,15 @@ class ProfileType extends AbstractType
         parent::buildForm($builder, $options);
 
         $builder->remove('username');
+        $builder->remove('current_password');
 
         $builder->add('name');
 
         $builder->add('avatar', VichImageType::class, [
             'required' => false,
+            'image_uri' => true,
             'allow_delete' => false,
             'download_uri' => false,
-            'image_uri' => false,
         ]);
     }
 

@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    app.path.avatar_images: /uploads/images/avatars
+    app.path.avatar_images: /upload/images/avatars
 
 framework:
     #esi: ~
