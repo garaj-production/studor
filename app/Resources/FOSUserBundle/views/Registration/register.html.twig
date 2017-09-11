@@ -23,7 +23,6 @@
 {% block title 'Регистрация' %}
 
 {% block fos_user_content %}
-    <div class="grid-x">
         <div class="small-2 cell"></div>
         <div class="small-8 cell">
             {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form container' ~ (not form.vars.valid ? ' form--invalid')}}) }}
@@ -62,7 +61,6 @@
             {{ form_end(form) }}
         </div>
         <div class="small-2 cell"></div>
-    </div>
 {% endblock fos_user_content %}
 
 {% block stylesheets %}
