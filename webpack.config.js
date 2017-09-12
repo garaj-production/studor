@@ -63,7 +63,7 @@ module.exports = [
                 'window.jQuery': 'jquery',
             }),
             new ExtractTextPlugin(
-                '../css/style.css',
+                '../css/[name].css',
                 {
                     allChunk: true
                 }
