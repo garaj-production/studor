@@ -49,6 +49,14 @@ module.exports = [
         plugins: [
             new CleanWebpackPlugin([web_path], {verbose: true}),
             new webpack.NoEmitOnErrorsPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                comments: false,
+                minimize: true,
+                compress: {
+                    warnings: false,
+                    drop_console: true
+                }
+            }),
             new webpack.ProvidePlugin({
                 $: 'jquery',
                 jQuery: 'jquery',
