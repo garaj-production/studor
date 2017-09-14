@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html class="no-js" lang="ru" dir="ltr">
+<html lang="ru" dir="ltr">
     <head>
-        <meta charset="UTF-8" />
+        <meta charset="utf-8">
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
             <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
         {% block javascripts %}
             <script src="{{ asset('assets/js/app.bundle.js') }}"></script>
         {% endblock %}
