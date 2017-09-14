@@ -4,7 +4,7 @@ imports:
     - { resource: services.yml }
 
 parameters:
-    locale: en
+    locale: ru
     app.path.avatar_images: /upload/images/avatars
 
 framework:
