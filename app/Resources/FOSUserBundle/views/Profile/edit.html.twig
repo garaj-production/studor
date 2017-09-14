@@ -1,10 +1,18 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
-{% block title 'Profile' %}
+{% block title 'Профиль' %}
 
 {% block fos_user_content %}
-    {{ form_start(form, { 'action': path('app_user_profile'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Update">
+    {{ form_start(form, { 'action': path('app_user_profile') }) }}
+        <div class="row">
+            <div class="col">
+                {{ form_row(form.email) }}
+                {{ form_row(form.name) }}
+            </div>
+            <div class="col">
+                {{ form_row(form.avatar) }}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-success" value="Сохранить">
     {{ form_end(form) }}
 {% endblock fos_user_content %}
