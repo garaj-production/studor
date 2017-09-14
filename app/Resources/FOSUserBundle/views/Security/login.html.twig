@@ -1,23 +1,25 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
+{% block title 'Авторизация' %}
+
 {% block fos_user_content %}
-    <form class="form container{{ error ? ' form--invalid' }}" action="{{ path("fos_user_security_check") }}" method="post">
+    <form class="form container" action="{{ path("fos_user_security_check") }}" method="post">
         {% if csrf_token %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         {% endif %}
         <h2>Вход</h2>
-        <div class="form__item{{ error ? ' form__item--invalid' }}">
-            <label for="email">E-mail*</label>
-            <input id="email" type="text" name="_username" placeholder="Введите e-mail" value="{{ last_username }}" required>
+        <div class="form-group">
+            <label for="email" class="control-label required">E-mail*</label>
+            <input class="form-control" id="email" type="text" name="_username" placeholder="Введите e-mail" value="{{ last_username }}" required>
             {% if error %}
-                <span class="form__error">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                <span>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
             {% endif %}
         </div>
-        <div class="form__item form__item--last{{ error ? ' form__item--invalid' }}">
-            <label for="password">Пароль*</label>
-            <input id="password" type="password" name="_password" placeholder="Введите пароль" required>
+        <div class="form-group">
+            <label for="password" class="control-label required">Пароль*</label>
+            <input class="form-control" id="password" type="password" name="_password" placeholder="Введите пароль" required>
             {% if error %}
-                <span class="form__error">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                <span>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
             {% endif %}
         </div>
         <button type="submit" name="_submit" class="button">Войти</button>

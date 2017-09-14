@@ -1,91 +1,12 @@
 {% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% use 'form_div_layout.html.twig' %}
-{% form_theme form _self %}
-
-{%- block form_row -%}
-    <div class="input-group">
-        <span class="input-group-label">
-            <i class="fa fa-{{ attr.icon|default('') }}"></i>
-        </span>
-        {{- form_widget(form) -}}
-    </div>
-    {{- form_errors(form) -}}
-{%- endblock form_row -%}
-
-{% block form_widget_simple -%}
-    {% if type is not defined or type not in ['file', 'hidden'] %}
-        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' input-group-field')|trim}) -%}
-    {% endif %}
-    {{- parent() -}}
-{%- endblock form_widget_simple %}
-
 {% block title 'Регистрация' %}
 
 {% block fos_user_content %}
-        <div class="small-2 cell"></div>
-        <div class="small-8 cell">
-            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form container' ~ (not form.vars.valid ? ' form--invalid')}}) }}
-                <div class="form-icons">
-                    <h4>Регистрация нового аккаунта</h4>
-
-                    {{ form_row(form.name, {
-                        'attr': {
-                            'placeholder': 'Введите Ваше имя',
-                            'icon': 'user',
-                        }
-                    }) }}
-
-                    {{ form_row(form.email, {
-                        'attr': {
-                            'placeholder': 'Введите e-mail',
-                            'icon': 'envelope',
-                        }
-                    }) }}
-
-                    {{ form_row(form.plainPassword.first, {
-                        'attr': {
-                            'placeholder': 'Введите пароль',
-                            'icon': 'key',
-                        }
-                    }) }}
-
-                    {{ form_row(form.plainPassword.second, {
-                        'attr': {
-                            'placeholder': 'Повторите second',
-                            'icon': 'key',
-                        }
-                    }) }}
-                    <button type="submit" class="button">Зарегистрироваться</button>
-                </div>
-            {{ form_end(form) }}
-        </div>
-        <div class="small-2 cell"></div>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'form container' ~ (not form.vars.valid ? ' form--invalid')}}) }}
+        <h4>Регистрация нового аккаунта</h4>
+        {{ form_widget(form) }}
+        <button type="submit" class="button">Зарегистрироваться</button>
+    {{ form_end(form) }}
 {% endblock fos_user_content %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <style>
-        form .form-icons {
-            text-align: center;
-        }
-
-        form .form-icons h4 {
-            margin-bottom: 1rem;
-        }
-
-        form .form-icons .input-group-label {
-            background-color: #1779ba;
-            border-color: #1779ba;
-        }
-
-        form .form-icons .input-group-field {
-            border-color: #1779ba;
-        }
-
-        form .form-icons .fa {
-            color: white;
-            width: 1rem;
-        }
-    </style>
-{% endblock %}

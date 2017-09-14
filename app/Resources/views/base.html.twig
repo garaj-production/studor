@@ -12,20 +12,7 @@
         {% endblock %}
     </head>
     <body>
-        <div class="header">
-            <div class="grid-x">
-                <div class="small-2 small-offset-10 cell">
-                    <a href="{{ path('fos_user_security_login') }}">Login</a>
-                    or
-                    <a href="{{ path('fos_user_registration_register') }}">Register</a>
-                </div>
-            </div>
-        </div>
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                {% block body %}{% endblock %}
-            </div>
-        </div>
+        {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="{{ asset('assets/js/app.bundle.js') }}"></script>
         {% endblock %}
