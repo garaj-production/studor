@@ -24,6 +24,7 @@ class ProfileType extends AbstractType
             'image_uri' => true,
             'allow_delete' => false,
             'download_uri' => false,
+            'translation_domain' => 'messages',
         ]);
     }
 

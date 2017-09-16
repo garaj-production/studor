@@ -6,6 +6,10 @@
                 <source xml:lang="ru">Имя</source>
                 <target xml:lang="ru">Имя</target>
             </trans-unit>
+            <trans-unit id="Avatar" resname="Avatar">
+                <source xml:lang="ru">Аватар</source>
+                <target xml:lang="ru">Аватар</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
