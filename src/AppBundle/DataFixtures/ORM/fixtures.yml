@@ -6,3 +6,7 @@ AppBundle\Entity\User:
         plainPassword: 123123
         enabled: true
         roles: ['ROLE_USER']
+
+AppBundle\Entity\Article:
+    article_{1..10}:
+        __construct: ['<text(20)>', 'article_<current()>', '<text(300)>']
