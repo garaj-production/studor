@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\DTO\ArticleDTO;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -47,5 +48,14 @@ class Article
         $this->title = $title;
         $this->slug = $slug;
         $this->text = $text;
+    }
+
+    public static function createFromDTO(ArticleDTO $dto): Article
+    {
+        return new self(
+            $dto->title,
+            $dto->slug,
+            $dto->text
+        );
     }
 }
