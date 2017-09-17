@@ -35,7 +35,7 @@ class RegistrationSubscriber implements EventSubscriberInterface
 
     public function onRegistrationInitialize(GetResponseUserEvent $event)
     {
-        if ('POST' === $event->getRequest()->getMethod()) {
+        if ($event->getRequest()->isMethod('POST')) {
             return;
         }
 
