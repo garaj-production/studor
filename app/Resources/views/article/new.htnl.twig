@@ -1,5 +1,7 @@
 {% extends "base.html.twig" %}
 
+{% block title 'Добавить статью' %}
+
 {% block body %}
     {{ form_start(form, { 'action': path('article_new') }) }}
         {{ form_widget(form) }}

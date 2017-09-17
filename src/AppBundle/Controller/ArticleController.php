@@ -33,6 +33,11 @@ class ArticleController extends Controller
             $manager->persist($article);
             $manager->flush();
 
+            $this->addFlash(
+                'success',
+                'Статья успешно создана и отправлена на модерацию!'
+            );
+
             return $this->redirectToRoute('article_new');
         }
 
