@@ -34,10 +34,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
             $manager = $this->getDoctrine()->getManager();
 
-            $purger = new ORMPurger($manager);
-            $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
-            $executor = new ORMExecutor($manager, $purger);
-            $executor->execute([]);
+            $this->purgeDataBase();
 
             foreach ($objectSet->getObjects() as $object) {
                 $manager->persist($object);
@@ -45,6 +42,22 @@ class TestCase extends \PHPUnit\Framework\TestCase
 
             $manager->flush();
         }
+    }
+
+    public function tearDown()
+    {
+        parent::tearDown();
+        $this->purgeDataBase();
+    }
+
+    private function purgeDataBase()
+    {
+        $manager = $this->getDoctrine()->getManager();
+
+        $purger = new ORMPurger($manager);
+        $purger->setPurgeMode(ORMPurger::PURGE_MODE_TRUNCATE);
+        $executor = new ORMExecutor($manager, $purger);
+        $executor->execute([]);
     }
 
     protected function get(string $serviceId)
