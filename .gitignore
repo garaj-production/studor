@@ -20,3 +20,4 @@
 node_modules/
 web/assets/
 web/upload/
+docker/db-data
