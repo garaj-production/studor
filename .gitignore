@@ -20,4 +20,5 @@
 node_modules/
 web/assets/
 web/upload/
-docker/db-data
+.data/db
+.env

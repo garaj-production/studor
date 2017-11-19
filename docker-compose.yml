@@ -19,9 +19,9 @@ services:
         image: mysql:5.7
         restart: always
         environment:
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
         volumes:
-            - ./docker/db-data:/var/lib/mysql
+            - ./.data/db:/var/lib/mysql
 
     adminer:
         image: adminer
