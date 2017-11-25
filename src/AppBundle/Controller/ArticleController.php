@@ -28,7 +28,12 @@ class ArticleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $article = Article::createFromDTO($articleDTO);
+            $article = new Article(
+                $articleDTO->title,
+                $articleDTO->slug,
+                $articleDTO->text
+            );
+
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($article);
             $manager->flush();

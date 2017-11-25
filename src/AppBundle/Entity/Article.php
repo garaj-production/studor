@@ -49,13 +49,4 @@ class Article
         $this->slug = $slug;
         $this->text = $text;
     }
-
-    public static function createFromDTO(ArticleDTO $dto): Article
-    {
-        return new self(
-            $dto->title,
-            $dto->slug,
-            $dto->text
-        );
-    }
 }
