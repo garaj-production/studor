@@ -1,3 +1,0 @@
-AppBundle\Entity\Article:
-    article_1:
-        __construct: ['title_fixture', 'slug_fixture', 'text_fixture']
