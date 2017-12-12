@@ -39,6 +39,7 @@ class SecurityController extends Controller
      * @Route("/registration", name="registration")
      *
      * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
      *
      * @return Response
      */
