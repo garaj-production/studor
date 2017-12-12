@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Регистрация' %}
+
+{% block body %}
+    {{ form_start(form, {'method': 'post', 'action': path('registration'), 'attr': {'class': 'form container' ~ (not form.vars.valid ? ' form--invalid')}}) }}
+        <h4>Регистрация нового аккаунта</h4>
+
+        {{ form_row(form.name, { label: 'Имя' }) }}
+        {{ form_row(form.email, { label: 'Email' }) }}
+        {{ form_row(form.plainPassword, { label: 'Пароль' }) }}
+
+        <button type="submit" class="button">Зарегистрироваться</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -43,6 +43,14 @@ class User implements UserInterface, \Serializable
      */
     private $email;
 
+    public function __construct(string $name, string $email, string $password)
+    {
+        $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
+    }
+
+
     public function serialize(): string
     {
         return \serialize([
