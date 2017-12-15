@@ -42,6 +42,7 @@ class SecurityController extends Controller
      *
      * @param Request $request
      * @param PasswordEncoderInterface $encoder
+     * @param TokenStorageInterface $tokenStorage
      *
      * @return Response
      */
