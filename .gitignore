@@ -17,8 +17,10 @@
 
 # Custom
 .idea/
-node_modules/
-public/assets/
 public/upload/
 .data/db
 .env
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/public/build/
+###< symfony/webpack-encore-pack ###

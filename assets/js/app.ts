@@ -1,5 +1,5 @@
 // styles
-import '../styles/main.scss';
+import '../styles/app.scss';
 
 // scripts
 import 'bootstrap'
