@@ -47,7 +47,7 @@ class ArticleController extends Controller
         }
 
         return $this->render(
-            'article/new.htnl.twig',
+            'new.html.twig',
             ['form' => $form->createView()]
         );
     }
