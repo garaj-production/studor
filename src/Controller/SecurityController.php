@@ -18,16 +18,39 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends Controller
 {
     /**
+     * @var AuthenticationUtils
+     */
+    private $authUtils;
+
+    /**
+     * @var PasswordEncoderInterface
+     */
+    private $encoder;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    public function __construct(
+        AuthenticationUtils $authUtils,
+        PasswordEncoderInterface $encoder,
+        TokenStorageInterface $tokenStorage
+    ) {
+        $this->authUtils = $authUtils;
+        $this->encoder = $encoder;
+        $this->tokenStorage = $tokenStorage;
+    }
+
+    /**
      * @Route("/login", name="login")
-     *
-     * @param AuthenticationUtils $authUtils
      *
      * @return Response
      */
-    public function login(AuthenticationUtils $authUtils): Response
+    public function login(): Response
     {
-        $error = $authUtils->getLastAuthenticationError();
-        $lastEmail = $authUtils->getLastUsername();
+        $error = $this->authUtils->getLastAuthenticationError();
+        $lastEmail = $this->authUtils->getLastUsername();
 
         return $this->render(
             'security/login.html.twig',
@@ -47,7 +70,7 @@ class SecurityController extends Controller
      *
      * @return Response
      */
-    public function registration(Request $request, PasswordEncoderInterface $encoder, TokenStorageInterface $tokenStorage): Response
+    public function registration(Request $request): Response
     {
         $userRegistrationDTO = new UserRegistrationDTO();
         $form = $this->createForm(UserRegistrationType::class, $userRegistrationDTO);
@@ -57,7 +80,7 @@ class SecurityController extends Controller
             $user = new User(
                 $userRegistrationDTO->name,
                 $userRegistrationDTO->email,
-                $encoder->encodePassword($userRegistrationDTO->plainPassword, '')
+                $this->encoder->encodePassword($userRegistrationDTO->plainPassword, '')
             );
 
             $manager = $this->getDoctrine()->getManager();
@@ -65,7 +88,7 @@ class SecurityController extends Controller
             $manager->flush();
 
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-            $tokenStorage->setToken($token);
+            $this->tokenStorage->setToken($token);
 
             $this->addFlash('success', 'Вы успешно зарегистрировались');
 

@@ -4,19 +4,25 @@ parameters:
 
 services:
     _defaults:
-        autowire: true
-        autoconfigure: true
         public: false
-
-    App\:
-        resource: '../src/*'
-        exclude: '../src/{Entity,Migrations,Tests}'
-
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
 
     Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface:
         class: Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder
         arguments:
             - '%bcrypt_cost%'
+
+    App\Controller\SecurityController:
+        class: App\Controller\SecurityController
+        arguments:
+            - '@security.authentication_utils'
+            - '@Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface'
+            - '@security.token_storage'
+        tags:
+            - { name: 'controller.service_arguments' }
+
+    App\Validator\UniqueFieldValidator:
+        class: App\Validator\UniqueFieldValidator
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: 'validator.constraint_validator' }
